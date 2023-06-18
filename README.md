@@ -1,7 +1,7 @@
 <p align="center">
   <img src="https://github.com/joaoaapinho/car-distractions-image-classification/assets/114337279/d6060226-b9cb-46ba-af04-625e9a1d4cb5" alt="Small logo" width="20%">
 </p>
-<h3 align="center">PedalPals: Bike Sharing Demand Forecasting</h3>
+<h3 align="center">Image Classification: Distracted Driver Actions</h3>
 
 <p align="center"><b>Professor:</b> Hind Azegrouz</p>
 
