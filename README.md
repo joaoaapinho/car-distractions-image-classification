@@ -69,7 +69,10 @@ Data Augmentation: Yes
 
 **Model 5: ResNet50**
 Pre-trained Model: ResNet50
-(Additional settings and hyperparameters not specified)
+Batch Size: 50
+Optimizer: RMSprop
+Learning Rate (α): 0.01
+Data Augmentation: No
 
 **Model 6: MobileNetV2 with Image Augmentation**
 Pre-trained Model: MobileNetV2
