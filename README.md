@@ -86,14 +86,14 @@ Despite this all models, barring Model 5 (possibly due to a short number of epoc
 
 **Results Summary:**
 
-| Model   | Accuracy  | Time Taken | Best Model |
+| Model   | Accuracy  | Time Taken | Best Performer |
 |---------|----------:|-----------:|:----------:|
-| Model 1 | 0.9915    | --         | No         |
-| Model 2 | 0.9783    | --         | Yes        |
-| Model 3 | 0.9726    | --         | No         |
-| Model 4 | 0.9790    | --         | Yes        |
-| Model 5 | 0.2146    | --         | No         |
-| Model 6 | 0.9753    | --         | No         |
+| Model 1 | 0.9915    | 17' 19''         | No         |
+| Model 2 | 0.9783    | 19' 30''         | Yes        |
+| Model 3 | 0.9726    | 84' 26''         | No         |
+| Model 4 | 0.9790    | 40'         | Yes        |
+| Model 5 | 0.2146    | 40' 44''         | No         |
+| Model 6 | 0.9753    | 40'         | No         |
 
 
 <h2> 🔧 Limitations and Improvement Opportunities </h2>
