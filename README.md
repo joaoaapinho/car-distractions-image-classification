@@ -3,8 +3,6 @@
 </p>
 <h3 align="center">Image Classification: Distracted Driver Actions</h3>
 
-<p align="center"><b>Professor:</b> Hind Azegrouz</p>
-
 <p align="center"><b>Done by:</b> João André Pinho</p>
 
 <h2> 👁‍🗨 Overview </h2>
