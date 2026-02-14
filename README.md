@@ -1,113 +1,232 @@
 <p align="center">
-  <img src="https://github.com/joaoaapinho/car-distractions-image-classification/assets/114337279/d6060226-b9cb-46ba-af04-625e9a1d4cb5" alt="Small logo" width="20%">
+  <img src="https://github.com/joaoaapinho/car-distractions-image-classification/assets/114337279/d6060226-b9cb-46ba-af04-625e9a1d4cb5" alt="Project Logo" width="20%">
 </p>
-<h3 align="center">Image Classification: Distracted Driver Actions</h3>
 
-<p align="center"><b>Done by:</b> João André Pinho</p>
+<h1 align="center">Distracted Driver Detection</h1>
+<h3 align="center">Real-Time Driver Behavior Classification Using Deep Learning</h3>
 
-<h2> 👁‍🗨 Overview </h2>
+<p align="center">
+  <b>Author:</b> João André Pinho<br>
+  <b>Stack:</b> Python · TensorFlow/Keras · OpenCV · Scikit-Learn
+</p>
 
-<h3>🏢 Assignment Description</h3>
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.8+-blue?logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/TensorFlow-2.10+-orange?logo=tensorflow&logoColor=white" alt="TensorFlow">
+</p>
 
-In this assignment we are given driver images, each taken in a car with a driver doing something in the car (texting, eating, talking on the phone, makeup, reaching behind, etc). The goal is to predict what the driver is doing in each picture.
+---
 
-The 10 classes to predict are:
+## Overview
 
-c0: safe driving
-c1: texting - right
-c2: talking on the phone - right
-c3: texting - left
-c4: talking on the phone - left
-c5: operating the radio
-c6: drinking
-c7: reaching behind
-c8: hair and makeup
-c9: talking to passenger
+Distracted driving is one of the leading causes of road accidents worldwide. This project builds and benchmarks **6 deep learning models** - including custom CNNs and transfer learning architectures (VGG16, ResNet-50, MobileNetV2) - to classify driver behavior from in-car camera images into **10 distraction categories**, achieving up to **99.15% validation accuracy**.
 
-<h3>❔ Problem Definition</h3>
+<p align="center">
+  <img src="images/distraction_classes.png" alt="Distraction Classes" width="40%">
+</p>
 
-**"Can a Computer Vision Model be built in order to be able to detect and properly classify different drivers behaviors while driving?"**
+### Classification Categories
 
-<h2> 💻 Technology Stack </h2>
+| Class | Behavior | Class | Behavior |
+|-------|----------|-------|----------|
+| **c0** | Safe driving | **c5** | Operating the radio |
+| **c1** | Texting - right | **c6** | Drinking |
+| **c2** | Phone call - right | **c7** | Reaching behind |
+| **c3** | Texting - left | **c8** | Hair and makeup |
+| **c4** | Phone call - left | **c9** | Talking to passenger |
 
-Python, Tensorflow, Keras, Pandas, NumPy, Scikit-Learn, Matplotlib.
+---
 
-<h2> 🔧 Methodology </h2>
+## Dataset
 
-The methodology for this project involved the development and evaluation of multiple deep learning models for the task of image classification. Initially, **two convolutional neural networks (CNNs) were built from scratch**, utilizing layers such as convolutional layers, pooling layers, dropout layers, and fully connected layers. These CNN models served as the baseline for the performance comparison. The architecture and hyperparameters for these models were adjusted manually, with the aim of maximizing the model's ability to correctly identify the classes in the dataset.
+- **Training set:** 22,424 images across 10 balanced classes
+- **Test set:** 79,726 unlabeled images
+- **Resolution:** 640 x 480 pixels (resized to 128x128 or 224x224 depending on model)
+- **Source:** In-car dashboard camera captures
 
-**Model 1: CNN from Scratch**
-Architecture: Custom CNN
-Batch Size: 100
-Optimizer: Adam
-Learning Rate (α): 0.001
+<p align="center">
+  <img src="images/image_class_distribution.png" alt="Image Class Distribution" width="40%">
+</p>
 
-**Model 2: CNN from Scratch (improved hyperparameters and image augmentation)**
-Architecture: Custom CNN
-Batch Size: 64
-Optimizer: Adam
-Learning Rate (α): 0.005
-Data Augmentation: Yes
+---
 
-Subsequently, a **transfer learning** approach to leverage pre-trained models was adopted, notably with models such as **VGG16, ResNet50, and MobileNetV2**. Some of the models were utilized twice, in order to perform hyperparameter tuning. Transfer learning allowed the project to benefit from features already learned from massive datasets like ImageNet, thus enhancing the model's performance. These models were fine-tuned by adding custom fully connected layers on top, tailoring the models to our specific classification task. During this stage, different hyperparameters were experimented with, including learning rates, batch sizes, and optimizers, to further optimize the model's performance.
+## Project Structure
 
-**Model 3: VGG16 with Image Augmentation**
-Pre-trained Model: VGG16
-Batch Size: 60
-Optimizer: Adam
-Learning Rate (α): 0.005
-Data Augmentation: Yes
+```
+├── README.md
+├── requirements.txt
+├── .gitignore
+├── notebooks/
+│   ├── 01_custom_cnn_baseline.ipynb        # Custom CNN - baseline without augmentation
+│   ├── 02_custom_cnn_augmented.ipynb       # Custom CNN - with data augmentation & vignette
+│   ├── 03_vgg16_transfer_learning.ipynb    # VGG16 transfer learning
+│   ├── 04_vgg16_tuned.ipynb               # VGG16 with Adagrad optimizer tuning
+│   ├── 05_resnet50_transfer_learning.ipynb # ResNet-50 transfer learning
+│   └── 06_mobilenetv2_transfer_learning.ipynb  # MobileNetV2 - lightweight architecture
+├── models/                                 # Saved Keras model weights (.h5)
+│   ├── distractions_model1_classifier.h5
+│   ├── distractions_model2_classifier.h5
+│   └── distractions_model6_classifier.h5
+└── images/                                 # Architecture reference diagrams
+    ├── vgg16-architecture.jpg
+    ├── resnet50_architecture.png
+    └── mobilenetV2_architecture.png
+```
 
-**Model 4: VGG16 (improved hyperparameters with image augmentation)**
-Pre-trained Model: VGG16
-Batch Size: 60
-Optimizer: Adam
-Learning Rate (α): 0.005
-Data Augmentation: Yes
+---
 
-**Model 5: ResNet50**
-Pre-trained Model: ResNet50
-Batch Size: 50
-Optimizer: RMSprop
-Learning Rate (α): 0.01
-Data Augmentation: No
+## Methodology
 
-**Model 6: MobileNetV2 with Image Augmentation**
-Pre-trained Model: MobileNetV2
-Batch Size: 150
-Optimizer: SGD
-Learning Rate (α): 0.003
-Data Augmentation: Yes
+Each notebook follows a structured pipeline: **Data Exploration → Preprocessing → Model Definition → Training → Evaluation → Inference**.
 
-<h2> 🔧 Main Conclusions </h2>
+### Approach 1: Custom CNN (Built from Scratch)
 
-Throughout the project, it could be observed that all models provided high precision, recall, and accuracy, indicating robust model performance. **Models 2 and 4** were the only ones to flawlessly identify all test images, suggesting superior potential for larger datasets. This success was achieved through adjusting hyperparameters and implementing image augmentation techniques, reinforcing the importance of these strategies in improving model performance.
+A lightweight 3-layer convolutional architecture designed to establish baseline performance:
 
-Despite this all models, barring Model 5 (possibly due to a short number of epochs and a high learning rate), consistently showcased the effectiveness of optimizers such as Adam, Adagrad, and SGD, each contributing to different learning capabilities and training speeds. Regardless of that, a common trend across models was the need to balance learning rate against training speed and model accuracy, pointing to the importance of optimization in achieving efficient model performance.
+```
+Conv2D(32) → MaxPool → Conv2D(64) → MaxPool → Conv2D(128) → Dropout(0.5) → Flatten → Dense(10, softmax)
+```
 
-**Results Summary:**
+- **Model 1** trains without augmentation to measure raw model capacity
+- **Model 2** adds a custom augmentation pipeline including a **vignette effect** to suppress background noise from car windows
 
-| Model   | Accuracy  | Time Taken | Best Performer |
-|---------|----------:|-----------:|:----------:|
-| Model 1 | 0.9915    | 17' 19''         | No         |
-| Model 2 | 0.9783    | 19' 30''         | Yes        |
-| Model 3 | 0.9726    | 84' 26''         | No         |
-| Model 4 | 0.9790    | 40'         | Yes        |
-| Model 5 | 0.2146    | 40' 44''         | No         |
-| Model 6 | 0.9753    | 40'         | No         |
+### Approach 2: Transfer Learning (Pre-trained on ImageNet)
+
+Leveraging architectures pre-trained on ImageNet's 14M+ images, with frozen convolutional bases and custom classification heads:
+
+<p align="center">
+  <img src="images/vgg16-architecture.jpg" alt="VGG16 Architecture" width="80%">
+</p>
+<p align="center"><i>VGG16 Architecture - 16 weight layers with 3x3 convolutions (Models 3 & 4)</i></p>
+
+<p align="center">
+  <img src="images/resnet50_architecture.png" alt="ResNet-50 Architecture" width="80%">
+</p>
+<p align="center"><i>ResNet-50 Architecture - 50 layers with residual skip connections (Model 5)</i></p>
+
+<p align="center">
+  <img src="images/mobilenetV2_architecture.png" alt="MobileNetV2 Architecture" width="60%">
+</p>
+<p align="center"><i>MobileNetV2 Architecture - inverted residual blocks optimized for mobile deployment (Model 6)</i></p>
+
+### Data Augmentation Strategy
+
+Models 2, 3, 4, and 6 employ a custom augmentation pipeline to improve robustness:
+
+- **Geometric transforms:** rotation (4°), width/height shifts, shear, zoom
+- **Photometric transforms:** brightness variation (0.9–1.4x range)
+- **Custom vignette effect:** Gaussian-weighted darkening of image periphery to force the model to focus on the driver rather than background scenery
+
+---
+
+## Results
+
+### Performance Summary
+
+| Model | Architecture | Optimizer | Learning Rate | Augmentation | Accuracy | Training Time | Test Result |
+|:-----:|:------------|:---------:|:------------:|:------------:|:--------:|:------------:|:-----------:|
+| 1 | Custom CNN | Adam | 0.001 | No | **99.15%** | 17 min | 4/5 |
+| 2 | Custom CNN | Adam | 0.005 | Yes | 97.83% | 19 min | **5/5** |
+| 3 | VGG16 | Adam | 0.005 | Yes | 97.26% | 84 min | 4/5 |
+| 4 | VGG16 | Adagrad | 0.01 | Yes | 97.90% | 40 min | **5/5** |
+| 5 | ResNet-50 | RMSprop | 0.01 | No | 21.46% | 40 min | - |
+| 6 | MobileNetV2 | SGD | 0.003 | Yes | 97.53% | 40 min | 4/5 |
+
+> Models **2** and **4** achieved **flawless classification on all test samples**, demonstrating that both a well-tuned custom CNN and VGG16 with optimized hyperparameters can reliably detect driver distractions.
+
+### Training Convergence
+
+Training/validation loss and accuracy curves for Model 2 showing rapid convergence
+
+<p align="center">
+  <img src="images/train-test-convergence-model2.png" alt="Train Validation Model 2" width="40%">
+</p>
+
+Training/validation loss and accuracy curves for Model 4 showing fast VGG16 convergence
+
+<p align="center">
+  <img src="images/train-test-convergence-model4.png" alt="Train Validation Model 4" width="40%">
+</p>
 
 
-<h2> 🔧 Limitations and Improvement Opportunities </h2>
+### Confusion Matrices
 
-📈 **Further Hyperparameter Tuning:** Model 2's performance indicates that more gains could be achieved with additional hyperparameter tuning.
+Confusion matrix for Model 2 shows a strong diagonal:
 
-🎛️ **Refine Data Augmentation:** While image augmentation was beneficial, some noise from outside the car still influenced the analysis, implying the need for refining this process.
+<p align="center">
+  <img src="images/confusion-matrix-model2.png" alt="Train Validation Model 2" width="40%">
+</p>
 
-🔄 **Adjust Learning Rate and Increase Epochs:** Model 5's lower performance points to the need for adjusting parameters like learning rate or increasing the number of epochs.
+As well as confusion matrix for Model 4:
 
-⚖️ **Balance Training Speed and Accuracy:** Across all models, a trade-off between training speed and accuracy was observed. Exploring different learning rates, optimizers, and architectures could better balance these aspects.
+<p align="center">
+  <img src="images/confusion-matrix-model4.png" alt="Confusion Matrix Model 4" width="40%">
+</p>
+---
 
-🕵️‍♀️ **Advanced Hyperparameter Tuning Techniques:** Techniques like Grid Search or Random Search can systematically explore many combinations of parameters to find the ones with the best performance.
+## Model Interpretability: Grad-CAM Analysis
 
-🏗️ **Experiment with Different Architectures:** Trying out different architectures, especially those successful in similar tasks, could provide beneficial insights and improve the model's robustness and accuracy.
+Gradient-weighted Class Activation Mapping (Grad-CAM) was applied to visualize which regions of the image each model focuses on when making predictions.
 
+3x3 Grad-CAM heatmap grid from the custom model 1 cnn shows attention on both driver and background
+
+<p align="center">
+  <img src="images/grad-cam-custom-cnn.png" alt="Gradcam Model 1" width="60%">
+</p>
+
+3x3 Grad-CAM heatmap grid from mobilenetv2 model 6 shows improved focus on driver body
+
+<p align="center">
+  <img src="images/grad-cam-mobilenetv2.png" alt="Gradcam MobileNetV2" width="60%">
+</p>
+
+**Key finding:** Models without data augmentation tend to learn from extraneous background patterns (scenery outside the car window). The custom vignette preprocessing and augmentation pipeline significantly improved the model's focus on the driver's body and actions.
+
+---
+
+## Key Findings
+
+- **Data augmentation is critical** - even with 22K+ training images, augmentation with vignette effects improved generalization and shifted model attention toward relevant features
+- **Custom CNNs are competitive** - a simple 3-layer CNN achieved 99.15% validation accuracy, demonstrating that architectural complexity is not always necessary
+- **Transfer learning accelerates convergence** - VGG16 and MobileNetV2 reached high accuracy in fewer epochs, though at higher computational cost per epoch
+- **Optimizer selection matters** - Adam and Adagrad performed consistently well; RMSprop with a high learning rate (0.01) caused ResNet-50 to fail to converge
+- **Learning rate is the most sensitive hyperparameter** - the gap between Model 5's failure (21%) and Model 4's success (98%) highlights its impact
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+```bash
+pip install -r requirements.txt
+```
+
+### Running the Notebooks
+
+```bash
+jupyter notebook notebooks/01_custom_cnn_baseline.ipynb
+```
+
+The dataset should be placed in a `Data/` directory at the project root with the following structure:
+```
+Data/
+├── driver_imgs_list.csv
+└── imgs/
+    ├── train/
+    │   ├── c0/
+    │   ├── c1/
+    │   └── ...
+    └── test/
+```
+
+---
+
+## Future Work
+
+- **Hyperparameter optimization:** Apply systematic search (Bayesian, grid, or random) across all architectures
+- **Advanced augmentation:** Experiment with Cutout, MixUp, or CutMix strategies to further reduce background noise sensitivity
+- **Learning rate scheduling:** Implement cosine annealing or reduce-on-plateau callbacks for better convergence
+- **Fine-tuning pre-trained layers:** Unfreeze top convolutional blocks for domain-specific feature adaptation
+- **Ensemble methods:** Combine predictions from Models 2, 4, and 6 for improved robustness
+- **Edge deployment:** Optimize MobileNetV2 with TensorFlow Lite for real-time in-vehicle inference

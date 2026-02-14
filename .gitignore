@@ -1,0 +1,13 @@
+# Data
+Data/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment
+env/
+venv/
+
+# IDE
+.vscode/
+.idea/
