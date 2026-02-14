@@ -45,7 +45,7 @@ Distracted driving is one of the leading causes of road accidents worldwide. Thi
 - **Source:** In-car dashboard camera captures
 
 <p align="center">
-  <img src="images/image_class_distribution.png" alt="Image Class Distribution" width="40%">
+  <img src="images/image_class_distribution.png" alt="Image Class Distribution" width="60%">
 </p>
 
 ---
