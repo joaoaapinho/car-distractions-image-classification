@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="images/repo_icon.png" alt="Project Logo" width="50%">
+  <img src="images/repo_icon.png" alt="Project Logo" width="80%">
 </p>
 
 <h1 align="center">Distracted Driver Detection</h1>
