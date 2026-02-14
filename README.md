@@ -1,18 +1,18 @@
 <p align="center">
-  <img src="https://github.com/joaoaapinho/car-distractions-image-classification/assets/114337279/d6060226-b9cb-46ba-af04-625e9a1d4cb5" alt="Project Logo" width="20%">
+  <img src="images/repo_icon.png" alt="Project Logo" width="50%">
 </p>
 
 <h1 align="center">Distracted Driver Detection</h1>
-<h3 align="center">Real-Time Driver Behavior Classification Using Deep Learning</h3>
+<h3 align="center">Driver Behavior Classification Using Deep Learning</h3>
 
 <p align="center">
-  <b>Author:</b> João André Pinho<br>
-  <b>Stack:</b> Python · TensorFlow/Keras · OpenCV · Scikit-Learn
+  <b>Stack:</b> Python · TensorFlow · Keras · OpenCV · Scikit-Learn
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.8+-blue?logo=python&logoColor=white" alt="Python">
   <img src="https://img.shields.io/badge/TensorFlow-2.10+-orange?logo=tensorflow&logoColor=white" alt="TensorFlow">
+  <img src="https://img.shields.io/badge/OpenCV-4.6+-darkblue?style=for-the-badge&logo=OpenCV&logoColor=white" alt="OpenCV">
 </p>
 
 ---
