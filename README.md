@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/bfa497f4-25c2-40a0-aeb8-5040a8e78c83" alt="Project Logo" width="30%">
+  <img src="https://github.com/user-attachments/assets/bfa497f4-25c2-40a0-aeb8-5040a8e78c83" alt="Project Logo" width="20%">
 </p>
 
 <h1 align="center">Distracted Driver Detection</h1>
